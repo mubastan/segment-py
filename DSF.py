@@ -1,3 +1,4 @@
+# Disjoint Set data structure with union by rank
 
 from numpy import *
 
