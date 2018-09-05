@@ -29,9 +29,10 @@ class DSF:
         return self.nodes[x].parent
 
     def union(self, x, y):
+        if x==y: return
         xr = self.find(x)        # root, set of x
         yr = self.find(y)        # root, set of y
-        if(x==y or xr==yr): return
+        if xr==yr: return
         nx = self.nodes[xr]
         ny = self.nodes[yr]
         if nx.rank > ny.rank:
