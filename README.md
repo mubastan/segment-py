@@ -1,4 +1,4 @@
-# segmet-py
+# segment-py
 SRM and efficient graph-based image segmentation algorithms in Python + numpy + scipy
 
 1. Statistical Region Merging (SRM), by Nock and Nielsen, PAMI 2004
