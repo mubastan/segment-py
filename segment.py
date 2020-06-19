@@ -19,21 +19,21 @@ from SRM import *
 def segmentColorImageEGBS(file):
     image = scipy.ndimage.imread(file)
     h, w, d = image.shape
-    print 'image.shape: ', image.shape
-    imshow(image); title('Input image'); draw()
+    print('image.shape: ', image.shape)
+    imshow(image); title('input image'); draw()
     
     TH = 500    # threshold
     print 'TH:', TH    
     egbs = EGBS(w, h, threshold=TH, minSize=500)
     egbs.segmentImage(image)
-    print 'Merge small components'
+    print('merge small components')
     egbs.mergeSmall()
-    print 'number of segments: ', egbs.numSets()
+    print('number of segments: ', egbs.numSets())
     
     #labels = egbs.getLabels()
     labels, edges = egbs.getSegmentEdges()
     gray()
-    matshow(labels); title('Segmentation'); draw()
+    matshow(labels); title('segmentation'); draw()
     matshow(edges); title('edges'); draw()
     
     image2 = image.copy()
@@ -50,19 +50,19 @@ def segmentColorImageSRM(file):
     image = scipy.ndimage.filters.median_filter(image, 3)
     image = scipy.ndimage.filters.gaussian_filter(image, 0.5)
 
-    imshow(image); title('Input image'); draw()   
+    imshow(image); title('input image'); draw()   
     
     h, w, d = image.shape
     srm = SRM(w, h, d)
     srm.segmentImage(image, 45)
     # srm.segmentImage2(image, Gm, 128) # using gradient magnitudes Gm (e.g., from color Canny edge detection)
-    print 'Merge small components'
+    print('merge small components')
     srm.mergeSmall(minsize=10)
-    print 'number of segments: ', srm.numSets()
+    print('number of segments: ', srm.numSets())
     
     labels, edges = srm.getSegmentEdges()
     
-    matshow(labels); title('Segmentation'); gray(); draw()
+    matshow(labels); title('segmentation'); gray(); draw()
     matshow(edges); title('edges'); gray(); draw()
 
 
@@ -80,20 +80,20 @@ def segmentEdgeImage(file):
     
     MN = mean(Gm)
     MD = median(Gm)
-    print 'mean, median, max: ', MN, MD, 255
+    print('mean, median, max: ', MN, MD, 255)
     
     Gm[Gm < MD] = 0.0        
     TH = 700
-    print 'TH:', TH    
+    print('TH:', TH)
     egbs = EGBS(w, h, threshold=TH, minSize=300)
     egbs.segmentEdgeImage(Gm)
-    print 'Merge small components'
+    print('merge small components')
     egbs.mergeSmall(th=100, numSegments=20)
-    print 'number of segments: ', egbs.numSets()
+    print('number of segments: ', egbs.numSets())
     
     labels, edges = egbs.getSegmentEdges()
-    matshow(labels); title('Segmentation labels'); gray(); draw()
-    matshow(edges); title('Segmentation edges'); gray(); draw()
+    matshow(labels); title('segmentation labels'); gray(); draw()
+    matshow(edges); title('segmentation edges'); gray(); draw()
 
 def showEdgeColors(imgfile, edgefile):
     image = scipy.misc.imread(imgfile)
@@ -116,7 +116,7 @@ def showEdgeColors(imgfile, edgefile):
     
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2: print '\nUsage: python segment.py imageFile\n'; sys.exit()
+    if len(sys.argv) < 2: print('\nUsage: python segment.py imageFile\n'); sys.exit()
     
     
     #segmentColorImageEGBS(sys.argv[1])
