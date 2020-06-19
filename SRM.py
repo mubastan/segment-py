@@ -21,7 +21,7 @@ class SRM:
     def init(self, width, height):
         size = width*height
         nedges = 2*size - width - height
-        print 'number edges allocated: ', nedges
+        print('number edges allocated: ', nedges)
         self.edges = array([Edge() for i in range(nedges)])
         self.dsf = DSF(size)
         
@@ -34,18 +34,18 @@ class SRM:
     def segmentImage(self, image, Q):
         self.initMeansColor(image)        
         self.numEdges = self.buildGraph(image)        
-        print 'number of edges: ', self.numEdges
-        print 'number of sets initial: ', self.dsf.numSets
+        print('number of edges: ', self.numEdges)
+        print('number of sets initial: ', self.dsf.numSets)
         self.segmentGraph(self.numEdges, Q)
-        print 'number of sets final: ', self.numSets()
+        print('number of sets final: ', self.numSets())
     
     def segmentImage2(self, image, Gm, Q):
         self.initMeansColor(image)        
         self.numEdges = self.buildEdgeGraph(Gm)        
-        print 'number of edges: ', self.numEdges
-        print 'number of sets initial: ', self.dsf.numSets
+        print('number of edges: ', self.numEdges)
+        print('number of sets initial: ', self.dsf.numSets)
         self.segmentGraph(self.numEdges, Q)
-        print 'number of sets final: ', self.numSets()
+        print('number of sets final: ', self.numSets())
     
     def initMeansColor(self, image):
         w = image.shape[1]
