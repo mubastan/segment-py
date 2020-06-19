@@ -8,10 +8,10 @@ class Edge:
         self.w = w
     
 #    def __cmp__(self,other):
-#        return cmp(self.w,other.w)
+#        return cmp(self.w, other.w)
     
     def __lt__(self, other):
          return self.w < other.w
         
     def printEdge(self):
-        print self.a, self.b, self.w
+        print(self.a, self.b, self.w)
