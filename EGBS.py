@@ -23,7 +23,7 @@ class EGBS:
     def init(self, width, height):
         size = width*height
         nedges = 2*size - width - height
-        print 'nedges: ', nedges
+        print ('nedges: ', nedges)
         self.edges = array([Edge() for i in range(nedges)])
         self.dsf = DSF(size)
         self.thresholds = self.TH*ones(size)
@@ -34,17 +34,17 @@ class EGBS:
         
     def segmentImage(self, image):
         self.numEdges = self.buildGraph(image)        
-        print 'number of edges: ', self.numEdges
-        print 'number of sets initial: ', self.dsf.numSets
+        print('number of edges: ', self.numEdges)
+        print('number of sets initial: ', self.dsf.numSets)
         self.segmentGraph(self.numEdges)
-        print 'number of sets final: ', self.numSets()
+        print('number of sets final: ', self.numSets())
         
     def segmentEdgeImage(self, edgeImage):        
         self.numEdges = self.buildEdgeGraph(edgeImage)
-        print 'number of edges: ', self.numEdges
-        print 'number of sets initial: ', self.dsf.numSets
+        print('number of edges: ', self.numEdges)
+        print('number of sets initial: ', self.dsf.numSets)
         self.segmentGraph(self.numEdges)
-        print 'number of sets final: ', self.dsf.numSets
+        print('number of sets final: ', self.dsf.numSets)
         
     def buildGraph(self, image):
         w = image.shape[1]
@@ -143,18 +143,18 @@ from pylab import *
 
 if __name__ == "__main__":
     image = scipy.misc.imread(sys.argv[1])
-    print 'image.shape: ', image.shape
+    print('image.shape: ', image.shape)
     
     #pl.gray()
     imshow(image); draw()
     
-    gbgs = GBGS(image.shape[1], image.shape[0], threshold=300.0, minSize=100)
-    gbgs.segmentImage(image)
-    print 'Merge small components'
-    gbgs.mergeSmall()
-    print 'number of sets final: ', gbgs.numSets()
+    egbs = EGBS(image.shape[1], image.shape[0], threshold=300.0, minSize=100)
+    egbs.segmentImage(image)
+    print ('Merge small components')
+    egbs.mergeSmall()
+    print('number of sets final: ', egbs.numSets())
     
-    labels = gbgs.getLabels()
+    labels = egbs.getLabels()
     matshow(labels)
     
     show()
