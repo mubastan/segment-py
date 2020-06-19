@@ -56,34 +56,34 @@ class DSF:
         self.numSets = self.numElements
 
     def printSet(self):
-        print '\nnum elements: ', self.numElements
-        print 'num sets: ', self.numSets
-        print 'Size: '
+        print('\nnum elements: ', self.numElements)
+        print('num sets: ', self.numSets)
+        print('Size: ')
         for i in range(self.numElements):
-            print self.nodes[i].size,
-        print '\nParent: '
+            print(self.nodes[i].size, end='')
+        print('\nParent: ')
         for i in range(self.numElements):
-            print self.nodes[i].parent,
-        print '\nRank: '
+            print(self.nodes[i].parent, end='')
+        print('\nRank: ')
         for i in range(self.numElements):
-            print self.nodes[i].rank,
-        print
+            print(self.nodes[i].rank, end='')
+        print()
 
 if __name__ == "__main__":
     dsf = DSF(10)
-    print 'dsf.numElements: ', dsf.numElements
-    print 'dsf.numSets: ', dsf.numSets
-    print 'find 3: ', dsf.find(3)
-    print 'find 4: ', dsf.find(4)
+    print('dsf.numElements: ', dsf.numElements)
+    print('dsf.numSets: ', dsf.numSets)
+    print('find 3: ', dsf.find(3))
+    print('find 4: ', dsf.find(4))
     dsf.union(3,4)
-    print 'union 3,4'
-    print 'find 3: ', dsf.find(3)
-    print 'find 4: ', dsf.find(4)
+    print('union 3,4')
+    print('find 3: ', dsf.find(3))
+    print('find 4: ', dsf.find(4))
     dsf.union(3,5)
-    print 'union 3,5'
-    print 'find 3: ', dsf.find(3)
-    print 'find 5: ', dsf.find(5)
-    print 'num sets:', dsf.numSets
+    print('union 3,5')
+    print('find 3: ', dsf.find(3))
+    print('find 5: ', dsf.find(5))
+    print('num sets:', dsf.numSets)
 
     dsf.printSet()
     dsf.union(9,4)
