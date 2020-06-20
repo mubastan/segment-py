@@ -1,19 +1,16 @@
 # Disjoint Set data structure with union by rank and path compression
 
-import numpy
-
 class Node:
     def __init__(self, parent, rank = 0):
         self.parent = parent
         self.rank = rank
         self.size = 1
 
-
 class DSF:
     def __init__(self, numElements):
         self.numElements = numElements
         self.numSets = numElements
-        self.nodes = numpy.array([Node(i) for i in range(numElements)])
+        self.nodes = [Node(i) for i in range(numElements)]
 
     def find_nopc(self, x):
         y = x
@@ -75,10 +72,12 @@ if __name__ == "__main__":
     print('dsf.numSets: ', dsf.numSets)
     print('find 3: ', dsf.find(3))
     print('find 4: ', dsf.find(4))
+    print('num sets:', dsf.numSets)
     dsf.union(3,4)
     print('union 3,4')
     print('find 3: ', dsf.find(3))
     print('find 4: ', dsf.find(4))
+    print('num sets:', dsf.numSets)
     dsf.union(3,5)
     print('union 3,5')
     print('find 3: ', dsf.find(3))
