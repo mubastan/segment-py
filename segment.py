@@ -23,7 +23,7 @@ def segmentColorImageEGBS(file):
     imshow(image); title('input image'); draw()
     
     TH = 500    # threshold
-    print 'TH:', TH    
+    print ('TH:', TH)    
     egbs = EGBS(w, h, threshold=TH, minSize=500)
     egbs.segmentImage(image)
     print('merge small components')
